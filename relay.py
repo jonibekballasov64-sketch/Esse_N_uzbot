@@ -9,7 +9,7 @@ from config import ADMIN_ID
 from permissions import is_user_allowed
 from messages import (
     MSG_NOT_ALLOWED,
-    MSG_AFTER_SUBMIT,
+    MSG_ESSE_ACCEPTED,
     MSG_ERROR,
 )
 
@@ -41,7 +41,7 @@ async def relay_user_to_admin(bot: Bot, message: types.Message):
         )
 
         # 3️⃣ Foydalanuvchiga tasdiq
-        await message.answer(MSG_AFTER_SUBMIT)
+        await message.answer(MSG_ESSE_ACCEPTED)
 
     except Exception:
         await message.answer(MSG_ERROR)
