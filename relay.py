@@ -1,6 +1,6 @@
 # relay.py
 # =====================================================
-# Lovegram-style relay logic (with permission check)
+# Lovegram-style relay logic
 # =====================================================
 
 from aiogram import Bot, types
@@ -8,9 +8,8 @@ from aiogram import Bot, types
 from config import ADMIN_ID
 from permissions import is_user_allowed
 from messages import (
-    MSG_WELCOME_ALLOWED,
     MSG_NOT_ALLOWED,
-    MSG_ESSE_ACCEPTED,
+    MSG_AFTER_SUBMIT,
     MSG_ERROR,
 )
 
@@ -21,7 +20,7 @@ from messages import (
 async def relay_user_to_admin(bot: Bot, message: types.Message):
     """
     Foydalanuvchidan kelgan xabar:
-    - agar ruxsatli bo‘lsa → admin ga yuboriladi
+    - ruxsat bo‘lsa → admin ga yuboriladi
     - bo‘lmasa → rad etiladi
     """
 
@@ -29,21 +28,20 @@ async def relay_user_to_admin(bot: Bot, message: types.Message):
 
     # 1️⃣ Ruxsat tekshiruvi
     allowed = await is_user_allowed(bot, user_id)
-
     if not allowed:
         await message.answer(MSG_NOT_ALLOWED)
         return
 
     try:
-        # 2️⃣ Admin ga yuborish
+        # 2️⃣ Admin ga forward
         await bot.forward_message(
             chat_id=ADMIN_ID,
             from_chat_id=message.chat.id,
             message_id=message.message_id
         )
 
-        # 3️⃣ Foydalanuvchiga javob
-        await message.answer(MSG_ESSE_ACCEPTED)
+        # 3️⃣ Foydalanuvchiga tasdiq
+        await message.answer(MSG_AFTER_SUBMIT)
 
     except Exception:
         await message.answer(MSG_ERROR)
