@@ -37,3 +37,12 @@ CHECK_HOURS = 48
 # Kimga yuborildi deb ko‘rinishi
 # =====================================================
 REVIEW_USERNAME = "@Filolog_N"
+
+
+# =====================================================
+# RUXSAT BERILGAN YOPIQ GURUHLAR (ID ORQALI)
+# MUHIM: -100 bilan boshlanishi shart
+# =====================================================
+ALLOWED_GROUP_IDS = [
+    -1001234567890,  # 30-guruh. 2-iyundan (MISOL)
+]
