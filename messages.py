@@ -28,9 +28,9 @@ MSG_NOT_ALLOWED = (
 
 
 # -----------------------------------------------------
-# Esse qabul qilinganda (sizga yuborilgach)
+# Esse yuborilgandan keyingi tasdiq (ASOSIY)
 # -----------------------------------------------------
-MSG_ESSE_ACCEPTED = (
+MSG_AFTER_SUBMIT = (
     "📌 *Esse yuborishni nihoyalagan bo‘lsangiz*, rahmat.\n"
     "⏳ 48 soat ichida tekshirib, esse guruhiga tashlanadi.\n\n"
     "✅ Yuborish yakunlanmagan bo‘lsa, *davom etavering*.\n"
