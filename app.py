@@ -5,7 +5,7 @@ from config import BOT_TOKEN, ADMIN_ID
 from relay import relay_user_to_admin, relay_admin_to_user
 from album_handler import handle_album
 from permissions import is_user_allowed
-from messages import MSG_WELCOME_ALLOWED, MSG_NOT_ALLOWED, MSG_AFTER_SUBMIT
+from messages import MSG_WELCOME_ALLOWED, MSG_NOT_ALLOWED, MSG_ESSE_ACCEPTED
 
 logging.basicConfig(level=logging.INFO)
 
@@ -55,7 +55,7 @@ async def handle_user_message(message: types.Message):
     await relay_user_to_admin(bot, message)
 
     # Foydalanuvchiga tasdiq
-    await message.answer(MSG_AFTER_SUBMIT)
+    await message.answer(MSG_ESSE_ACCEPTED)
 
 
 # =====================================================
