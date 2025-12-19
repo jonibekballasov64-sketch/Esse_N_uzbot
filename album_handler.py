@@ -1,6 +1,6 @@
 # album_handler.py
 # =====================================================
-# Album (media group) handler — ALBOM → ALBOM
+# Album (media group) handler
 # =====================================================
 
 import asyncio
@@ -8,7 +8,7 @@ from collections import defaultdict
 from aiogram import Bot, types
 
 from config import ADMIN_ID
-from messages import MSG_AFTER_SUBMIT, MSG_ERROR
+from messages import MSG_ESSE_ACCEPTED, MSG_ERROR
 
 
 # media_group_id → list of messages
@@ -17,8 +17,8 @@ albums_buffer = defaultdict(list)
 
 async def handle_album(bot: Bot, message: types.Message):
     """
-    Foydalanuvchidan kelgan albomni yig‘adi
-    va admin ga HAM ALBOM HOLIDA yuboradi
+    Albomdan kelgan rasmlarni yig‘adi va
+    to‘liq bo‘lgach admin ga ALBOM holatda forward qiladi
     """
 
     media_group_id = message.media_group_id
@@ -29,43 +29,23 @@ async def handle_album(bot: Bot, message: types.Message):
     # 2️⃣ Albom tugashini kutamiz
     await asyncio.sleep(2)
 
-    # 3️⃣ Agar allaqachon yuborilgan bo‘lsa — chiqib ket
+    # 3️⃣ Agar bu albom allaqachon yuborilgan bo‘lsa → chiqib ketamiz
     if media_group_id not in albums_buffer:
         return
 
     album_messages = albums_buffer.pop(media_group_id)
 
     try:
-        media = []
-
+        # 4️⃣ Albomni admin ga forward qilamiz
         for msg in album_messages:
-            if msg.photo:
-                media.append(
-                    types.InputMediaPhoto(
-                        media=msg.photo[-1].file_id,
-                        caption=(
-                            f"👤 {msg.from_user.full_name}\n"
-                            f"🆔 {msg.from_user.id}"
-                            if not media else None
-                        )
-                    )
-                )
-            elif msg.document:
-                media.append(
-                    types.InputMediaDocument(
-                        media=msg.document.file_id
-                    )
-                )
+            await bot.forward_message(
+                chat_id=ADMIN_ID,
+                from_chat_id=msg.chat.id,
+                message_id=msg.message_id
+            )
 
-        # 4️⃣ ADMIN GA ALBOM HOLIDA YUBORAMIZ
-        await bot.send_media_group(
-            chat_id=ADMIN_ID,
-            media=media
-        )
+        # 5️⃣ Foydalanuvchiga YAGONA javob
+        await message.answer(MSG_ESSE_ACCEPTED)
 
-        # 5️⃣ Foydalanuvchiga BIR MARTA javob
-        await message.answer(MSG_AFTER_SUBMIT)
-
-    except Exception as e:
-        print("ALBUM ERROR:", e)
+    except Exception:
         await message.answer(MSG_ERROR)
