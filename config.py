@@ -44,5 +44,5 @@ REVIEW_USERNAME = "@Filolog_N"
 # MUHIM: -100 bilan boshlanishi shart
 # =====================================================
 ALLOWED_GROUP_IDS = [
-    -1002602623868,  # 30-guruh. 2-iyundan (MISOL)
+    -1003371227344,  # 30-guruh. 2-iyundan (MISOL)
 ]
