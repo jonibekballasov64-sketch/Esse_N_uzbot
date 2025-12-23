@@ -1,29 +1,21 @@
 # state.py
 # =====================================================
-# Foydalanuvchi esse topshirish holati
+# Esse qabul qilish umumiy holati (ADMIN boshqaradi)
 # =====================================================
 
-# user_id -> state
-# state: "idle" | "started" | "finished"
-USER_STATES = {}
+# possible states: "closed", "open"
+SUBMIT_STATE = "closed"
 
 
-def get_state(user_id: int) -> str:
-    """
-    Foydalanuvchining joriy holatini qaytaradi
-    """
-    return USER_STATES.get(user_id, "idle")
+def is_open() -> bool:
+    return SUBMIT_STATE == "open"
 
 
-def set_state(user_id: int, state: str):
-    """
-    Foydalanuvchi holatini o‘zgartiradi
-    """
-    USER_STATES[user_id] = state
+def open_submit():
+    global SUBMIT_STATE
+    SUBMIT_STATE = "open"
 
 
-def reset_state(user_id: int):
-    """
-    Foydalanuvchini boshlang‘ich holatga qaytaradi
-    """
-    USER_STATES.pop(user_id, None)
+def close_submit():
+    global SUBMIT_STATE
+    SUBMIT_STATE = "closed"
