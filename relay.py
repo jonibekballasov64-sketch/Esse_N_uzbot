@@ -11,7 +11,9 @@ from messages import (
     MSG_NOT_ALLOWED,
     MSG_ESSE_ACCEPTED,
     MSG_ERROR,
+    MSG_SUBMIT_FINISHED,
 )
+from state import is_open
 
 
 # =====================================================
@@ -20,13 +22,18 @@ from messages import (
 async def relay_user_to_admin(bot: Bot, message: types.Message):
     """
     Foydalanuvchidan kelgan xabar:
-    - ruxsat bo‘lsa → admin ga yuboriladi
-    - bo‘lmasa → rad etiladi
+    - esse ochiq bo‘lsa → admin ga yuboriladi
+    - yopiq bo‘lsa → rad etiladi
     """
 
     user_id = message.from_user.id
 
-    # 1️⃣ Ruxsat tekshiruvi
+    # 0️⃣ Esse ochiqmi?
+    if not is_open():
+        await message.answer(MSG_SUBMIT_FINISHED)
+        return
+
+    # 1️⃣ Guruh a’zoligi tekshiruvi
     allowed = await is_user_allowed(bot, user_id)
     if not allowed:
         await message.answer(MSG_NOT_ALLOWED)
