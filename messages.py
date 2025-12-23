@@ -27,20 +27,28 @@ MSG_NOT_ALLOWED = (
 )
 
 
-# -----------------------------------------------------
-# /boshlash bosilganda
-# -----------------------------------------------------
-MSG_SUBMIT_STARTED = (
-    "✍️ *Esse topshirish boshlandi.*\n\n"
-    "Iltimos, esseingizni rasm, albom, matn yoki fayl ko‘rinishida\n"
-    "shu yerga yuboring.\n\n"
-    "📌 Barcha sahifalarni tashlab bo‘lgach, /yakun buyrug‘ini bosing."
+# =====================================================
+# ADMIN UCHUN XABARLAR
+# =====================================================
+
+# /boshlash — admin
+MSG_ADMIN_STARTED = (
+    "✅ *Esse qabul qilish OCHILDI.*\n\n"
+    "Endi o‘quvchilar esse yuborishi mumkin."
+)
+
+# /yakun — admin
+MSG_ADMIN_FINISHED = (
+    "⛔ *Esse qabul qilish YOPILDI.*\n\n"
+    "Endi yuborilgan esselar qabul qilinmaydi."
 )
 
 
-# -----------------------------------------------------
-# ESSE YUBORILGANDAN KEYINGI TASDIQ
-# -----------------------------------------------------
+# =====================================================
+# O‘QUVCHI UCHUN XABARLAR
+# =====================================================
+
+# Esse yuborilgandan keyin
 MSG_ESSE_ACCEPTED = (
     "📌 *Esse yuborishni nihoyalagan bo‘lsangiz*, rahmat.\n"
     "⏳ 48 soat ichida tekshirib, esse guruhiga tashlanadi.\n\n"
@@ -48,11 +56,8 @@ MSG_ESSE_ACCEPTED = (
     "Hamma sahifalarni tashlab qo‘ying."
 )
 
-
-# -----------------------------------------------------
-# /yakun bosilganda (qabul yopiladi)
-# -----------------------------------------------------
-MSG_SUBMIT_FINISHED = (
+# Esse qabul yopiq bo‘lsa
+MSG_SUBMIT_CLOSED = (
     "❌ *Nargiza Olimovna esse qabul qilishni yakunladi.*\n\n"
     "Keyingi safar o‘z vaqtida ulgurishga harakat qiling.\n\n"
     "📩 Murojaatingiz bo‘lsa @Filolog_N ga yozing."
@@ -60,7 +65,7 @@ MSG_SUBMIT_FINISHED = (
 
 
 # -----------------------------------------------------
-# Texnik xatolik bo‘lsa
+# Texnik xatolik
 # -----------------------------------------------------
 MSG_ERROR = (
     "❌ Texnik xatolik yuz berdi.\n"
