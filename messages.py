@@ -28,13 +28,34 @@ MSG_NOT_ALLOWED = (
 
 
 # -----------------------------------------------------
-# ESSE YUBORILGANDAN KEYINGI TASDIQ (YAGONA NOM)
+# /boshlash bosilganda
+# -----------------------------------------------------
+MSG_SUBMIT_STARTED = (
+    "✍️ *Esse topshirish boshlandi.*\n\n"
+    "Iltimos, esseingizni rasm, albom, matn yoki fayl ko‘rinishida\n"
+    "shu yerga yuboring.\n\n"
+    "📌 Barcha sahifalarni tashlab bo‘lgach, /yakun buyrug‘ini bosing."
+)
+
+
+# -----------------------------------------------------
+# ESSE YUBORILGANDAN KEYINGI TASDIQ
 # -----------------------------------------------------
 MSG_ESSE_ACCEPTED = (
     "📌 *Esse yuborishni nihoyalagan bo‘lsangiz*, rahmat.\n"
     "⏳ 48 soat ichida tekshirib, esse guruhiga tashlanadi.\n\n"
     "✅ Yuborish yakunlanmagan bo‘lsa, *davom etavering*.\n"
     "Hamma sahifalarni tashlab qo‘ying."
+)
+
+
+# -----------------------------------------------------
+# /yakun bosilganda (qabul yopiladi)
+# -----------------------------------------------------
+MSG_SUBMIT_FINISHED = (
+    "❌ *Nargiza Olimovna esse qabul qilishni yakunladi.*\n\n"
+    "Keyingi safar o‘z vaqtida ulgurishga harakat qiling.\n\n"
+    "📩 Murojaatingiz bo‘lsa @Filolog_N ga yozing."
 )
 
 
