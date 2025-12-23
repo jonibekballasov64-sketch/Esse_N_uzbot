@@ -9,7 +9,12 @@ from collections import defaultdict
 from aiogram import Bot, types
 
 from config import ADMIN_ID
-from messages import MSG_ESSE_ACCEPTED, MSG_ERROR
+from messages import (
+    MSG_ESSE_ACCEPTED,
+    MSG_ERROR,
+    MSG_SUBMIT_FINISHED,
+)
+from state import is_open
 
 
 # media_group_id → list of messages
@@ -18,6 +23,11 @@ albums_buffer = defaultdict(list)
 
 async def handle_album(bot: Bot, message: types.Message):
     media_group_id = message.media_group_id
+
+    # 0️⃣ Esse ochiqmi?
+    if not is_open():
+        await message.answer(MSG_SUBMIT_FINISHED)
+        return
 
     # 1️⃣ Albomga qo‘shamiz
     albums_buffer[media_group_id].append(message)
