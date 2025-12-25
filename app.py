@@ -5,13 +5,7 @@ from config import BOT_TOKEN, ADMIN_ID
 from relay import relay_user_to_admin, relay_admin_to_user
 from album_handler import handle_album
 from permissions import is_user_allowed
-from messages import (
-    MSG_WELCOME_ALLOWED,
-    MSG_NOT_ALLOWED,
-    MSG_SUBMIT_STARTED,
-    MSG_SUBMIT_FINISHED,
-)
-from state import is_open, open_submit, close_submit
+from messages import MSG_WELCOME_ALLOWED, MSG_NOT_ALLOWED
 
 logging.basicConfig(level=logging.INFO)
 
@@ -27,41 +21,13 @@ async def start_handler(message: types.Message):
     user_id = message.from_user.id
 
     if user_id == ADMIN_ID:
-        await message.answer(
-            "👩‍🏫 *Admin panel*\n\n"
-            "/boshlash — esse qabul qilishni ochish\n"
-            "/yakun — esse qabul qilishni yopish"
-        )
+        await message.answer(MSG_WELCOME_ALLOWED)
         return
 
     if await is_user_allowed(bot, user_id):
         await message.answer(MSG_WELCOME_ALLOWED)
     else:
         await message.answer(MSG_NOT_ALLOWED)
-
-
-# =====================================================
-# /boshlash — FAQAT ADMIN
-# =====================================================
-@dp.message_handler(commands=["boshlash"], chat_type=types.ChatType.PRIVATE)
-async def admin_start_submit(message: types.Message):
-    if message.from_user.id != ADMIN_ID:
-        return
-
-    open_submit()
-    await message.answer(MSG_SUBMIT_STARTED)
-
-
-# =====================================================
-# /yakun — FAQAT ADMIN
-# =====================================================
-@dp.message_handler(commands=["yakun"], chat_type=types.ChatType.PRIVATE)
-async def admin_finish_submit(message: types.Message):
-    if message.from_user.id != ADMIN_ID:
-        return
-
-    close_submit()
-    await message.answer(MSG_SUBMIT_FINISHED)
 
 
 # =====================================================
@@ -75,14 +41,9 @@ async def handle_user_message(message: types.Message):
 
     user_id = message.from_user.id
 
-    # Guruh a’zoligi tekshiruvi
+    # Ruxsat tekshiruvi
     if not await is_user_allowed(bot, user_id):
         await message.answer(MSG_NOT_ALLOWED)
-        return
-
-    # Agar esse qabul yopiq bo‘lsa
-    if not is_open():
-        await message.answer(MSG_SUBMIT_FINISHED)
         return
 
     # Albom bo‘lsa
