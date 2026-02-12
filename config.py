@@ -43,5 +43,5 @@ REVIEW_USERNAME = "@Filolog_N"
 # RUXSAT BERILGAN YOPIQ GURUHLAR (ID ORQALI)
 # =====================================================
 ALLOWED_GROUP_IDS = [
-    -1002142682210,  # Aprel ESSE GURUH (YANGI)
+    -1003767875513,  # APREL ESSE GURUH ✅
 ]
