@@ -41,8 +41,7 @@ REVIEW_USERNAME = "@Filolog_N"
 
 # =====================================================
 # RUXSAT BERILGAN YOPIQ GURUHLAR (ID ORQALI)
-# MUHIM: -100 bilan boshlanishi shart
 # =====================================================
 ALLOWED_GROUP_IDS = [
-    -1003371227344,  # 30-guruh. 2-iyundan (MISOL)
+    -1002142682210,  # Aprel ESSE GURUH (YANGI)
 ]
